@@ -1,6 +1,8 @@
 # Sprint Challenge: Hash Tables and Blockchain
 
-This challenge allows you to practice the concepts and techniques learned over the past week and apply them in a concrete project. This Sprint, we learned how hash tables combine two data structures to get the best of both worlds and were introduced into the fascinating world of blockchains. In your challenge this week, you will demonstrate proficiency by solving algorithms in Python using hash tables and add another key feature to your blockchain.
+In this week's Sprint you implemented some classic and fundamental data structures and learned about how to go about evaluating their respective runtimes and performance. We also learned how hash tables combine two data structures to get the best of both worlds.
+
+This Sprint Challenge aims to assess your comfort with these topics through exercises that build on the data structures you implemented and the algorithmic intuition you've started to build up.
 
 ## Instructions
 
@@ -19,18 +21,6 @@ Commit your code regularly and meaningfully. This helps both you (in case you ev
 ## Description
 
 This sprint challenge is divided up into three parts:  Hash tables coding, blockchain coding, and a short interview covering parts of hash tables and blockchain.
-
-## Interview Questions
-
-During your challenge, you will be pulled aside by a PM for a 5 minute interview. During this interview, you will be expected to answer the following two topics:
-
-Explain in detail the workings of a dynamic array:
-* What is the runtime complexity to access an array, add or remove from the front, and add or remove from the back?
-* What is the worse case scenario if you try to extend the storage size of a dynamic array?
-
-Explain how blockchain networks remain in consensus:
-* What does a node do if it gets a message from another in the network with a new block?
-* Why can't someone cheat by changing a transaction from an earlier block to give themselves coins?
 
 ## Project Set Up
 
@@ -52,15 +42,62 @@ Your goal is to mine at least one coin.  Keep in mind that with many people comp
 
 #### [Hash Tables](https://github.com/LambdaSchool/Sprint-Challenge--Hash-BC/tree/master/hashtables)
 
-#### [Blockchain](https://github.com/LambdaSchool/Sprint-Challenge--Hash-BC/tree/master/blockchain)
+#### Task 1. Implement a Ring Buffer Data Structure
 
+A ring buffer is a non-growable buffer with a fixed size. When the ring buffer is full and a new element is inserted, the oldest element in the ring buffer is overwritten with the newest element. This kind of data structure is very useful for use cases such as storing logs and history information, where you typically want to store information up until it reaches a certain age, after which you don't care about it anymore and don't mind seeing it overwritten by newer data.
+
+Implement this behavior in the RingBuffer class. RingBuffer has two methods, `append` and `get`. The `append` method adds elements to the buffer. The `get` method returns all of the elements in the buffer in a list in their given order. It should not return any `None` values in the list even if they are present in the ring buffer.
+
+For example:
+
+```python
+buffer = RingBuffer(3)
+
+buffer.get()   # should return []
+
+buffer.append('a')
+buffer.append('b')
+buffer.append('c')
+
+buffer.get()   # should return ['a', 'b', 'c']
+
+# 'd' overwrites the oldest value in the ring buffer, which is 'a'
+buffer.append('d')
+
+buffer.get()   # should return ['d', 'b', 'c']
+
+buffer.append('e')
+buffer.append('f')
+
+buffer.get()   # should return ['d', 'e', 'f']
+```
+
+
+#### Task 3. Reverse a Linked List
+
+Inside of the `reverse` directory, you'll find a basic implementation of a Singly Linked List. _Without_ making it a Doubly Linked List (adding a tail attribute), complete the `reverse_list()` function within `reverse/reverse.py` reverse the contents of the list. 
+
+For example,
+```
+1->2->3->None
+```
+would become...
+```
+3->2->1->None
+```
+
+While credit will be given for a functional solution, only optimal solutions will earn a ***3*** on this task.
+
+#### Stretch 
+
+* Say your code from `names.py` is to run on an embedded computer with very limited RAM. Because of this, memory is extremely constrained and you are only allowed to store names in arrays (i.e. Python lists). How would you go about optimizing the code under these conditions? Try it out and compare your solution to the original runtime. (If this solution is less efficient than your original solution, include both and label the stretch solution with a comment)
 
 ### Rubric
 
-| *OBJECTIVE*                                                                                                     | *TASK*             | *1 - DOES NOT MEET EXPECTATIONS*                                                                                            | *2 - MEETS EXPECTATIONS*                                                                                                       | *3 - EXCEEDS EXPECTATIONS                                                                                                                             |
-|-----------------------------------------------------------------------------------------------------------------|--------------------|-----------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| implement and describe how high-level array functions work down to the memory level                             | Interview Question | If you were evaluating this candidate for a position with your company, your would object to them being added to your team. | If you were evaluating this candidate for a position with your company, you would be pleased to have this person on your team. | If you were evaluating this candidate for a position with your company, you would go out of your way to make sure this person is hired for your team. |
-| implement and utilize basic hash table + handle collisions and resizing in a hash table                         | Hash Problem 1 & 2 | Tests do not pass on one or both problems, or solutions do not use hash tables.                                             | Tests pass on both problems.  Solution utilizes a hash table.                                                                  | Tests pass on on both problems with solutions utilizing hash tables, linear runtime complexity, no flake8 complaints.                                 |
-| diagram and code a simple blockchain, utilizing a cryptographic hash                                            | Interview Question | If you were evaluating this candidate for a position with your company, your would object to them being added to your team. | If you were evaluating this candidate for a position with your company, you would be pleased to have this person on your team. | If you were evaluating this candidate for a position with your company, you would go out of your way to make sure this person is hired for your team. |
-| utilize a Proof of Work process to protect a blockchain from attack                                             | Blockchain Problem | The student is unable to mine a coin before the end of lunch.                                                               | The student was able to mine a coin before the end of lunch.                                                                   | The student presented a unique solution that was able to mine more than 100 coins before the end of lunch.                                            |
-| build a protocol to allow nodes in a blockchain network to communicate to share blocks and determine consensus. | Interview Question | If you were evaluating this candidate for a position with your company, your would object to them being added to your team. | If you were evaluating this candidate for a position with your company, you would be pleased to have this person on your team. | If you were evaluating this candidate for a position with your company, you would go out of your way to make sure this person is hired for your team. |
+| OBJECTIVE                                                                                                                                         | TASK                                         | 1 \- DOES NOT MEET Expectations                                                                                              | 2 \- MEETS Expectations                                                                                                                                                                                                                      | 3 \- EXCEEDS Expectations                                                                                                                                                     | SCORE |
+|---------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------|
+| \_Student should be able to construct a queue and stack and justify the decision to use a linked list instead of an array\.\_                     | Implement a Ring Buffer Data Structure       | Solution in ring\_buffer\.py DOES NOT run OR it runs but has multiple logical errors, failing 3 or more tests                | Solution in ring\_buffer\.py runs, but may have one or two logical errors\. Passes at least 7 of 9 tests                                                                                                                                     | Solution in ring\_buffer\.py has no syntax or logical errors and passes all tests                                                                                             |
+| \_Student should be able to construct a linked list and compare the runtime of operations to an array to make the optimal choice between them\.\_ | Reverse the contents of a Singly Linked List | Student's solution in reverse\.py is failing one or more tests                                                               | Student's solution in reverse\.py is able to correctly print out the contents of the Linked List in reverse order, passing all tests, BUT, the runtime of their solution is not optimal \(requires looping through the list more than once\) | Student's solution in reverse\.py is able to correctly print out the contents of the Linked List in reverse order, passing all tests AND it has a runtime of O\(n\) or better |
+| \_Student should be able to implement and describe how high\-level array functions work down to the memory level\_                                | Written Response                             | If you were evaluating this candidate for a position with your company, your would object to them being added to your team\. | If you were evaluating this candidate for a position with your company, you would be pleased to have this person on your team\.                                                                                                              | If you were evaluating this candidate for a position with your company, you would go out of your way to make sure this person is hired for your team\.                        |
+| \_Student should be able to implement and utilize basic hash table \+ handle collisions and resizing in a hash table\_                            | Hash Problem 1                               | Tests do not pass, or solution does not use hash tables\.                                                                    | Tests pass\.  Solution utilizes a hash table\.                                                                                                                                                                                               | Tests pass with solutions utilizing hash tables, linear runtime complexity, no flake8 complaints\.                                                                            |
+| \_Student should be able to implement and utilize basic hash table \+ handle collisions and resizing in a hash table\_                            | Hash Problem 2                               | Tests do not pass, or solution does not use hash tables\.                                                                    | Tests pass\.  Solution utilizes a hash table\.                                                                                                                                                                                               | Tests pass with solutions utilizing hash tables, linear runtime complexity, no flake8 complaints\.                                                                            |
