@@ -40,9 +40,13 @@ Your goal is to mine at least one coin.  Keep in mind that with many people comp
 
 ## Minimum Viable Product
 
-#### [Hash Tables](https://github.com/LambdaSchool/Sprint-Challenge--Hash-BC/tree/master/hashtables)
+#### Hash Tables
 
-#### Task 1. Implement a Ring Buffer Data Structure
+For the hash tables portion of the sprint challenge, you'll be working through some algorithm problems that are amenable to being solved efficiently using a hash table. You know the drill at this point. Navigate into each exercise's directory, read the instructions for the exercise laid out in the README, implement your solution in the `.py` skeleton file, then make sure your code passes the tests by running the test script with `-v`.
+
+A hash table implementation has been included for you already. Your task is to get the tests passing by using hash table. You can remind yourself of what hash table functions are available by looking at the `hashtable.py` file that is included in each exercise directory (note that the hash table implementations for both exercises differ slightly). 
+
+#### Implement a Ring Buffer Data Structure
 
 A ring buffer is a non-growable buffer with a fixed size. When the ring buffer is full and a new element is inserted, the oldest element in the ring buffer is overwritten with the newest element. This kind of data structure is very useful for use cases such as storing logs and history information, where you typically want to store information up until it reaches a certain age, after which you don't care about it anymore and don't mind seeing it overwritten by newer data.
 
